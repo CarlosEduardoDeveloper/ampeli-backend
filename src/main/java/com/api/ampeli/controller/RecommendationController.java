@@ -4,6 +4,7 @@ import com.api.ampeli.model.dto.*;
 import com.api.ampeli.model.*;
 import com.api.ampeli.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,7 +78,7 @@ public class RecommendationController {
         if (isAvailable) {
             return ResponseEntity.ok().body("LLM service is available");
         } else {
-            return ResponseEntity.serviceUnavailable().body("LLM service is not available");
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("LLM service is not available");
         }
     }
 

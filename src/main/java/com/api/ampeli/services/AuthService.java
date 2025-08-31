@@ -26,8 +26,6 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
     public AuthResponse register(RegisterRequest request) {
         // Validate password confirmation
         if (!request.getPassword().equals(request.getConfirmPassword())) {
