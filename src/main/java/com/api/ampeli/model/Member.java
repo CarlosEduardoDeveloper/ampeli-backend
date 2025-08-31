@@ -137,7 +137,7 @@ public class Member {
     }
 
     public enum FaithStage {
-        INICIANTE, CAMINHANDO, ATUANTE
+        NOVO_CONVERTIDO, INICIANTE, CAMINHANDO, ATUANTE
     }
 
     public enum EventPreference {
