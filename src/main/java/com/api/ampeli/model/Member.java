@@ -47,7 +47,7 @@ public class Member {
     private String phone;
 
     @Column(name = "church_attendance_time")
-    private Integer churchAttendanceTime; // em meses
+    private String churchAttendanceTime; // mudado para String para compatibilidade
 
     @Size(max = 500)
     @Column(name = "previous_churches", length = 500)
@@ -58,43 +58,43 @@ public class Member {
     private String howFoundChurch;
 
     @Size(max = 500)
-    @Column(name = "previous_groups", length = 500)
-    private String previousGroups;
+    @Column(name = "previous_participation", length = 500)
+    private String previousParticipation; // participacao_anterior
 
     @Size(max = 500)
-    @Column(length = 500)
-    private String interests;
+    @Column(name = "interest_areas", length = 500)
+    private String interestAreas; // areas_interesse como String separada por vírgulas
 
     @Size(max = 500)
-    @Column(length = 500)
-    private String skills;
+    @Column(name = "skills_gifts", length = 500)
+    private String skillsGifts; // habilidades_dons
 
     @Size(max = 300)
     @Column(name = "volunteer_area", length = 300)
     private String volunteerArea;
 
     @Size(max = 200)
-    @Column(length = 200)
-    private String availability;
+    @Column(name = "available_days_times", length = 200)
+    private String availableDaysTimes; // dias_horarios_disponiveis
 
-    @Size(max = 300)
-    @Column(name = "event_preference", length = 300)
-    private String eventPreference;
-
-    @Size(max = 500)
-    @Column(name = "desired_activities", length = 500)
-    private String desiredActivities;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "event_preference", length = 20)
+    private EventPreference eventPreference;
 
     @Size(max = 500)
-    @Column(name = "current_needs", length = 500)
-    private String currentNeeds;
+    @Column(name = "interests_in", length = 500)
+    private String interestsIn; // interesse_em como String separada por vírgulas
+
+    @Size(max = 500)
+    @Column(name = "church_search", length = 500)
+    private String churchSearch; // busca_na_igreja
 
     @Column(name = "open_to_new_groups")
     private Boolean openToNewGroups;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "age_group_preference", length = 20)
-    private AgeGroupPreference ageGroupPreference;
+    @Size(max = 300)
+    @Column(name = "group_preference", length = 300)
+    private String groupPreference; // preferencia_grupos
 
     @Enumerated(EnumType.STRING)
     @Column(name = "faith_stage", length = 30)
@@ -104,8 +104,8 @@ public class Member {
     private Boolean pastoralSupportInterest;
 
     @Size(max = 500)
-    @Column(name = "current_difficulties", length = 500)
-    private String currentDifficulties;
+    @Column(name = "faith_difficulties", length = 500)
+    private String faithDifficulties; // dificuldades_fe
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -125,11 +125,11 @@ public class Member {
     private Address address;
 
     public enum Gender {
-        MALE, FEMALE, OTHER
+        MASCULINO, FEMININO, OUTRO
     }
 
     public enum MaritalStatus {
-        SINGLE, MARRIED, DIVORCED, WIDOWED, SEPARATED
+        SOLTEIRO, CASADO, DIVORCIADO, VIUVO
     }
 
     public enum AgeGroupPreference {
@@ -137,6 +137,10 @@ public class Member {
     }
 
     public enum FaithStage {
-        NEW_BELIEVER, GROWING, MATURE, LEADER, MENTOR
+        INICIANTE, CAMINHANDO, ATUANTE
+    }
+
+    public enum EventPreference {
+        PRESENCIAL, DIGITAL, AMBOS
     }
 }
